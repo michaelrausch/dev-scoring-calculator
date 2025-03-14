@@ -1,26 +1,28 @@
+import { strings } from '../strings'
+
 export function getIceScore(impact: number, confidence: number, ease: number): number {
-  return Math.round(impact * confidence * ease / 10)
+  return Math.round(impact * confidence * ease)
 }
 
 export function getIcePriority(score: number) {
-  if (score >= 70) return {
-    level: 'Must Have',
+  if (score >= 500) return {
+    level: strings.ice.priorities.mustHave.label,
     color: 'bg-red-500',
-    description: 'High-impact feature with high confidence and ease of implementation'
+    description: strings.ice.priorities.mustHave.description
   }
-  if (score >= 45) return {
-    level: 'High Impact',
+  if (score >= 280) return {
+    level: strings.ice.priorities.highImpact.label,
     color: 'bg-orange-500',
-    description: 'Important feature that should be prioritized'
+    description: strings.ice.priorities.highImpact.description
   }
-  if (score >= 25) return {
-    level: 'Medium',
+  if (score >= 100) return {
+    level: strings.ice.priorities.medium.label,
     color: 'bg-yellow-500',
-    description: 'Valuable feature to consider for upcoming sprints'
+    description: strings.ice.priorities.medium.description
   }
   return {
-    level: 'Low Priority',
+    level: strings.ice.priorities.low.label,
     color: 'bg-blue-500',
-    description: 'Feature to revisit when higher priorities are completed'
+    description: strings.ice.priorities.low.description
   }
 } 

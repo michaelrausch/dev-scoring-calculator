@@ -38,22 +38,22 @@ export const strings = {
     priorities: {
       mustHave: {
         label: "Must Have",
-        range: "Score 70+",
+        range: "Score 500+",
         description: "High-impact feature with high confidence and ease of implementation"
       },
       highImpact: {
         label: "High Impact",
-        range: "Score 45-69",
+        range: "Score 280-500",
         description: "Important feature that should be prioritized"
       },
       medium: {
         label: "Medium",
-        range: "Score 25-44",
+        range: "Score 100-280",
         description: "Valuable feature to consider for upcoming sprints"
       },
       low: {
         label: "Low Priority",
-        range: "Score 0-24",
+        range: "Score 0-100",
         description: "Feature to revisit when higher priorities are completed"
       }
     }

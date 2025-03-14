@@ -16,8 +16,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark">
-      <body className={`${inter.className} min-h-screen bg-gradient-to-b from-zinc-950 via-zinc-900 to-zinc-950`}>
-        <div className="min-h-screen bg-grid-zinc-800/[0.04] bg-[size:40px_40px]">
+      <body className={`${inter.className} min-h-screen`}>
+        <div className="min-h-screen ">
           {children}
         </div>
       </body>

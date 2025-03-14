@@ -1,45 +1,41 @@
 import { strings } from '../strings'
 
+type ScoreCategory = 'ice' | 'bugs'
+type ScoreType = 'impact' | 'confidence' | 'ease' | 'likelihood'
+
+interface Strings {
+  ice: Record<ScoreType, { levels: Record<number, string> }>
+  bugs: Record<'impact' | 'likelihood', { levels: Record<number, string> }>
+}
+
+// Remove the declare const strings line and add type assertion here
+const typedStrings = strings as unknown as Strings
+
+const THRESHOLD_LEVELS = [9, 7, 5, 3, 1]
+
+function getDescription(category: ScoreCategory, type: ScoreType, value: number): string {
+  const level = THRESHOLD_LEVELS.find(threshold => value >= threshold) ?? 1
+  if (category === 'ice') {
+    return typedStrings.ice[type].levels[level]
+  }
+  return typedStrings.bugs[type as 'impact' | 'likelihood'].levels[level]
+}
+
 export function getDescriptions() {
   return {
-    getImpactDescription: (value: number) => {
-      if (value >= 9) return strings.ice.impact.levels[9]
-      if (value >= 7) return strings.ice.impact.levels[7]
-      if (value >= 5) return strings.ice.impact.levels[5]
-      if (value >= 3) return strings.ice.impact.levels[3]
-      return strings.ice.impact.levels[1]
-    },
+    getImpactDescription: (value: number) => 
+      getDescription('ice', 'impact', value),
 
-    getConfidenceDescription: (value: number) => {
-      if (value >= 9) return strings.ice.confidence.levels[9]
-      if (value >= 7) return strings.ice.confidence.levels[7]
-      if (value >= 5) return strings.ice.confidence.levels[5]
-      if (value >= 3) return strings.ice.confidence.levels[3]
-      return strings.ice.confidence.levels[1]
-    },
+    getConfidenceDescription: (value: number) => 
+      getDescription('ice', 'confidence', value),
 
-    getEaseDescription: (value: number) => {
-      if (value >= 9) return strings.ice.ease.levels[9]
-      if (value >= 7) return strings.ice.ease.levels[7]
-      if (value >= 5) return strings.ice.ease.levels[5]
-      if (value >= 3) return strings.ice.ease.levels[3]
-      return strings.ice.ease.levels[1]
-    },
+    getEaseDescription: (value: number) => 
+      getDescription('ice', 'ease', value),
 
-    getBugImpactDescription: (value: number) => {
-      if (value >= 9) return strings.bugs.impact.levels[9]
-      if (value >= 7) return strings.bugs.impact.levels[7]
-      if (value >= 5) return strings.bugs.impact.levels[5]
-      if (value >= 3) return strings.bugs.impact.levels[3]
-      return strings.bugs.impact.levels[1]
-    },
+    getBugImpactDescription: (value: number) => 
+      getDescription('bugs', 'impact', value),
 
-    getLikelihoodDescription: (value: number) => {
-      if (value >= 9) return strings.bugs.likelihood.levels[9]
-      if (value >= 7) return strings.bugs.likelihood.levels[7]
-      if (value >= 5) return strings.bugs.likelihood.levels[5]
-      if (value >= 3) return strings.bugs.likelihood.levels[3]
-      return strings.bugs.likelihood.levels[1]
-    }
+    getLikelihoodDescription: (value: number) => 
+      getDescription('bugs', 'likelihood', value)
   }
 } 

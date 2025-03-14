@@ -8,7 +8,7 @@ describe('useIceScoring', () => {
     expect(result.current.impact).toBe(5)
     expect(result.current.confidence).toBe(5)
     expect(result.current.ease).toBe(5)
-    expect(result.current.iceScore).toBe(13) // 5 * 5 * 5 / 10 rounded
+    expect(result.current.iceScore).toBe(125) // 5 * 5 * 5
   })
 
   it('updates score when values change', () => {
@@ -20,7 +20,7 @@ describe('useIceScoring', () => {
       result.current.setEase(10)
     })
 
-    expect(result.current.iceScore).toBe(100)
+    expect(result.current.iceScore).toBe(1000)
     expect(result.current.icePriority.level).toBe('Must Have')
   })
 

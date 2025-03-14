@@ -1,32 +1,36 @@
+import { strings } from '../strings';
+
 export function getBugScore(impact: number, likelihood: number): number {
-  return Math.round((impact * 1.3 + likelihood * 0.7) * 5)
+  return Math.round((impact * 1.2 + likelihood * 0.8) * 5)
 }
 
 export function getBugPriority(score: number, impact: number) {
+  const { priorities } = strings.bugs;
+
   if (impact >= 9) return {
-    level: 'Critical',
+    level: priorities.critical.label,
     color: 'bg-red-500',
-    description: 'Severe impact on business/users, needs immediate attention regardless of frequency'
+    description: priorities.critical.description
   }
   
   if (score >= 70) return {
-    level: 'Critical',
+    level: priorities.critical.label,
     color: 'bg-red-500',
-    description: 'Severe impact on business/users, needs immediate attention'
+    description: priorities.critical.description
   }
   if (score >= 45) return {
-    level: 'High',
+    level: priorities.high.label,
     color: 'bg-orange-500',
-    description: 'Significant impact, should be fixed in next release'
+    description: priorities.high.description
   }
   if (score >= 25) return {
-    level: 'Medium',
+    level: priorities.medium.label,
     color: 'bg-yellow-500',
-    description: 'Moderate impact, plan to fix soon'
+    description: priorities.medium.description
   }
   return {
-    level: 'Low',
+    level: priorities.low.label,
     color: 'bg-blue-500',
-    description: 'Minor impact, fix when convenient'
+    description: priorities.low.description
   }
 } 
