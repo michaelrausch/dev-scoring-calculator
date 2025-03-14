@@ -10,7 +10,8 @@
     "tauri": "tauri",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:ci": "jest --ci"
+    "test:ci": "jest --ci",
+    "preinstall": "npx npm-force-resolutions"
   },
   "dependencies": {
     "@radix-ui/react-slider": "^1.2.3",
@@ -29,7 +30,7 @@
     "@tailwindcss/postcss": "^4",
     "@tauri-apps/cli": "^2.3.1",
     "@testing-library/jest-dom": "^6.6.3",
-    "@testing-library/react": "^14.2.1",
+    "@testing-library/react": "^14.2.1-alpha.1",
     "@testing-library/user-event": "^14.6.1",
     "@types/jest": "^29.5.14",
     "@types/node": "^20",
@@ -42,5 +43,9 @@
     "tailwindcss": "^4",
     "ts-node": "^10.9.2",
     "typescript": "^5"
+  },
+  "resolutions": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   }
 }
